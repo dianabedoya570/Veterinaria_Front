@@ -128,7 +128,7 @@ const UserRegister = () => {
               <div className={styles.upload_image__button}>
                 <input
                   accept=".jpg, .png. .jpeg"
-                  className={styles.upload_image__button}
+                  className={styles.upload_image__input}
                   type="file"
                   ref={fileInputRef}
                   onChange={handleImageChange}

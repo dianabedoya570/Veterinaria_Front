@@ -1,23 +1,65 @@
 import React, { useState, useRef } from "react";
+import axios from "axios";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setPhotoPet } from "../../store/slices/register";
 import styles from "./pet_container_reg.module.scss";
 import { FotoPet } from "./foto";
 import petRegister from "../../images/pets.jpg";
+import { createPet } from "../../services/pet";
+import { useNavigate } from "react-router-dom";
 const PetContainerReg = () => {
+  const { idOwner } = useSelector((state) => state.owner);
+  const idUser = +idOwner;
   const fileInputRef = useRef(null);
   const dispatch = useDispatch();
-  const handleImageChange = (event) => {
+  const navigate = useNavigate();
+
+  const handleImageChange = async (event) => {
     const file = event.target.files[0];
     const url = URL.createObjectURL(file);
     dispatch(setPhotoPet(url));
+
+    //cloudinary
+
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("upload_preset", "s35o2c05");
+
+    try {
+      const response = await axios.post(
+        "https://api.cloudinary.com/v1_1/dx1i7gswx/image/upload",
+        formData
+      );
+      setImage(response.data.secure_url);
+      //console.log("url image", response.data.secure_url);
+    } catch (error) {
+      console.error(error);
+    }
   };
+
+  //data to capture
+  const [name, setName] = useState("");
+  const [color, setColor] = useState("");
+  const [age, setAge] = useState("");
+  const [race, setRace] = useState("");
+  const [specie, setSpecie] = useState("");
+  const [weight, setWeight] = useState("");
+  const [status, setStatus] = useState("");
+  const [image, setImage] = useState("");
+
   const handleButtonClick = () => {
     fileInputRef.current.click();
   };
+  //console.log(idUser);
+
+  const handleClickSave = () => {
+    createPet(name, color, age, race, specie, weight, image, status, idUser);
+    navigate("/owners");
+  };
+
   return (
     <div className={styles.petregister}>
       <div className={styles.petregister__contain}>
@@ -58,34 +100,65 @@ const PetContainerReg = () => {
               noValidate
               autoComplete="off"
             >
-              <TextField required id="outlined-required" label="Nombre" />
-              <TextField required id="outlined-required" label="Color" />
               <TextField
                 required
-                id="outlined-required"
+                id="name"
+                label="Nombre"
+                value={name}
+                onChange={(event) => setName(event.target.value)}
+              />
+              <TextField
+                required
+                id="color"
+                label="Color"
+                value={color}
+                onChange={(event) => setColor(event.target.value)}
+              />
+              <TextField
+                required
+                id="age"
                 label="Edad"
                 type="number"
+                value={age}
+                onChange={(event) => setAge(event.target.value)}
               />
-              <TextField required id="outlined-required" label="Raza" />
-              <TextField required id="outlined-required" label="Especie" />
               <TextField
                 required
-                id="outlined-required"
+                id="race"
+                label="Raza"
+                value={race}
+                onChange={(event) => setRace(event.target.value)}
+              />
+              <TextField
+                required
+                id="specie"
+                label="Especie"
+                value={specie}
+                onChange={(event) => setSpecie(event.target.value)}
+              />
+              <TextField
+                required
+                id="weight"
                 label="Peso"
                 type="number"
+                value={weight}
+                onChange={(event) => setWeight(event.target.value)}
               />
               <TextField
                 required
-                id="outlined-required"
+                id="status"
                 label="Estado"
                 type="number"
+                value={status}
+                onChange={(event) => setStatus(event.target.value)}
               />
             </Box>
             <div className={styles.crear}>
               <Button
                 className={styles.button}
-                type="submit"
+                type="button"
                 variant="contained"
+                onClick={handleClickSave}
               >
                 Registrar
               </Button>

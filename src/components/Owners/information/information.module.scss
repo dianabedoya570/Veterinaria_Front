@@ -1,5 +1,4 @@
 .table_container {
-  border: solid 1px black;
   min-height: 400px;
   min-width: 500px;
 }
@@ -63,6 +62,10 @@ th {
   width: 35px;
   height: 35px;
   padding: 5px;
+  &:hover {
+    background-color: rgba(5, 5, 189, 0.845);
+    zoom: 1.1;
+  }
 }
 .symbol_button {
   width: 20px;
@@ -73,4 +76,11 @@ th {
   flex-direction: row-reverse;
   align-items: center;
   justify-content: center;
+}
+.image_user {
+  max-width: 200px;
+  max-height: 200px;
+  border-radius: 10px;
+  border: solid 2px rgba(255, 255, 255, 0.762);
+  box-shadow: 5px 5px 5px rgba(128, 128, 128, 0.442);
 }

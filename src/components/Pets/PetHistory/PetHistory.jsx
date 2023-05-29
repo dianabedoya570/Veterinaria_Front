@@ -12,18 +12,22 @@ import MedicalInformationIcon from "@mui/icons-material/MedicalInformation";
 import ScheduleIcon from "@mui/icons-material/Schedule";
 
 const PetHistory = () => {
-  const token = sessionStorage.getItem("token");
-  const idhistory = sessionStorage.getItem("idhistory");
+  let token = "";
+  let idhistory = "";
   const { procedure } = useSelector(selectProcedureState);
+  const { loading } = useSelector(selectProcedureState);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getProceduresByHistory({ token, idhistory }));
+    token = sessionStorage.getItem("token");
+    idhistory = sessionStorage.getItem("idhistory");
   }, [dispatch, token, idhistory]);
 
-  useEffect(() => {
-    console.log("procedimientos", procedure);
-  }, [procedure]);
+  useEffect(() => {}, [procedure, loading, idhistory]);
+
+  if (loading) {
+    return <p>Cargando procedimientos...</p>;
+  }
 
   return (
     <div className={styles.history}>

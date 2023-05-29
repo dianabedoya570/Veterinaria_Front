@@ -18,7 +18,7 @@ const LoginUser = () => {
   const dispatch = useDispatch();
 
   const { payload } = useSelector(selectUserData) || {};
-  const { iduser, name, last_name, status, email, token } = payload || "";
+  const { idperson, name, last_name, status, email, token } = payload || "";
 
   const navigate = useNavigate();
   const [typeUser, setTypeUser] = React.useState("usuario");
@@ -28,15 +28,15 @@ const LoginUser = () => {
 
   useEffect(() => {
     if (token) {
-      sessionStorage.setItem("iduser", iduser);
+      sessionStorage.setItem("idperson", idperson);
       sessionStorage.setItem("name", name);
       sessionStorage.setItem("lastname", last_name);
-      sessionStorage.setItem("iduser", iduser);
       sessionStorage.setItem("status", status);
       sessionStorage.setItem("email", email);
       sessionStorage.setItem("token", token);
       goToFavs();
       console.log("logged");
+      console.log(payload);
     }
   }, [token]);
 
@@ -125,6 +125,9 @@ const LoginUser = () => {
             <Button className={styles.button} type="submit" variant="contained">
               Ingresar
             </Button>
+            <div className={styles.password_change}>
+              <a href="http://">Olvidaste tu contraseña?</a>
+            </div>
           </form>
         </div>
       </div>

@@ -1,20 +1,29 @@
 @import "../../styles/variables.scss";
 
 .card_vacuna {
+  background-color: white;
   align-self: center;
   margin: 5%;
   width: 80%;
-  height: 80vh;
+  height: 90vh;
   display: flex;
   justify-content: center;
+  align-items: center;
   flex-direction: row-reverse;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-
+  border-radius: 10px;
   &__info {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
     &__h1 {
       color: $mainColor;
+      font-family: $font;
     }
-    width: 90%;
-    height: 100%;
   }
+}
+
+.input_register {
+  margin-bottom: 10px;
 }

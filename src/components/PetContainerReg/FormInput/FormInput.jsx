@@ -1,18 +1,11 @@
 import React from "react";
-import "./form_input.scss";
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
 
 const FormInput = ({ fieldName, type, id, placeholderText }) => {
   return (
     <div>
-      <label className="input-group" for={id}>
-        <span className="input-group__span">{fieldName}</span>
-        <input
-          className="input-group__input"
-          type={type}
-          id={id}
-          placeholder={placeholderText}
-        />
-      </label>
+      <TextField id="outlined-required" label="Motivo consulta" />
     </div>
   );
 };

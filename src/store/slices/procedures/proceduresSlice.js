@@ -1,5 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { getProceduresApi } from "../../../services/procedure";
+import {
+  getProceduresApi,
+  createProcedureAPI,
+} from "../../../services/procedure";
 
 const initialState = {
   procedure: [],
@@ -9,7 +12,17 @@ const initialState = {
 export const getProceduresByHistory = createAsyncThunk(
   "pet/getPetProcedures",
   async ({ token, idhistory }) => {
+    console.log(idhistory);
     const data = await getProceduresApi(token, idhistory);
+
+    return data;
+  }
+);
+
+export const createProcedure = createAsyncThunk(
+  "pet/createProcedure",
+  async (body) => {
+    const data = await createProcedureAPI(body);
 
     return data;
   }

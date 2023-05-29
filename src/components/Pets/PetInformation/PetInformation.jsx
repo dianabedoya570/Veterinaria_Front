@@ -5,11 +5,17 @@ import { getPetById, selectPetState } from "../../../store/slices/pet/petSlice";
 import styles from "./pet_information.module.scss";
 import Image from "../assets/perro.jpg";
 import { ButtonPet } from "../../button-pet";
+import {
+  getProceduresByHistory,
+  selectProcedureState,
+} from "../../../store/slices/procedures/proceduresSlice";
+
 const PetInformation = () => {
   const { id: idParam } = useParams();
   const dispatch = useDispatch();
   //const petData = useSelector(selectPetState) || {};
   const { pet } = useSelector(selectPetState) || {};
+  const { loading } = useSelector(selectPetState) || {};
   const token = sessionStorage.getItem("token");
 
   useEffect(() => {
@@ -17,10 +23,18 @@ const PetInformation = () => {
   }, []);
 
   useEffect(() => {
-    if (pet && pet.history && pet.history.length > 0) {
+    if (!loading && pet && pet.history && pet.history.length > 0) {
       sessionStorage.setItem("idhistory", pet.history[0].idhistory);
+      if (sessionStorage.getItem("idhistory")) {
+        const idhistory = sessionStorage.getItem("idhistory");
+        dispatch(getProceduresByHistory({ token, idhistory }));
+      }
     }
   }, [pet]);
+
+  if (loading) {
+    return <p>Cargando procedimientos...</p>;
+  }
 
   return (
     <div className={styles.main}>
