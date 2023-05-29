@@ -1,0 +1,57 @@
+.button_container_menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: rgba(240, 255, 255, 0.646);
+  border-top: solid 5px white;
+  border-bottom: solid 5px white;
+}
+.image_button {
+  min-width: 130px;
+  max-width: 140px;
+  margin-top: 5px;
+}
+.list {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  padding: 0;
+  justify-content: center;
+  column-gap: 20px;
+  margin: 10px;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.item {
+  margin: 0 10px;
+  margin-bottom: 10px;
+}
+
+.button_page {
+  background-color: #649af7ee; /* Código corporativo azul */
+  color: #fff;
+  border: solid 3px rgba(201, 211, 231, 0.611);
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  transition: all 0.3s ease-in-out;
+  width: 150px;
+  height: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 10px 10px 10px rgba(95, 95, 95, 0.47);
+}
+
+.button_page:hover {
+  background-color: #3669bf; /* Un tono más oscuro del azul corporativo */
+  zoom: 1.1;
+}
+.text_menu {
+  font-size: 14px;
+}

@@ -1,0 +1,15 @@
+@import "../../../styles/variables.scss";
+
+.button_cmp {
+  background-color: $mainColor;
+  color: $textSecondaryColor;
+  padding: 3%;
+  border-radius: 8px;
+  border-style: none;
+  margin: 10px;
+  width: 30%;
+  height: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

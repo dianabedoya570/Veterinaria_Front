@@ -1,11 +1,8 @@
 import React from "react";
+import { UserRegister } from "../components/user";
 
-const Users = ()=>{
+const Users = () => {
+  return <UserRegister />;
+};
 
-    return (
-        <></>
-    )
-
-}
-
-export default Users
+export default Users;

@@ -1,9 +1,10 @@
 import React from "react";
+import { LoginUser } from "../components/login";
 
 const Login = ()=>{
 
     return (
-        <><h1>Hola Mundo</h1></>
+        <><LoginUser/></>
     )
 
 }

@@ -1,12 +1,18 @@
-import "./App.css";
+import "./App.scss";
 
 import { CustomRouter } from "./router";
 
+//redux
+import { Provider } from "react-redux";
+import store from "./store";
+
 function App() {
   return (
-    <div className="App">
-      <CustomRouter />
-    </div>
+    <Provider store={store}>
+      <div className="App">
+        <CustomRouter />
+      </div>
+    </Provider>
   );
 }
 

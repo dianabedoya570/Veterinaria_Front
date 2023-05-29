@@ -1,0 +1,29 @@
+@import url("https://fonts.googleapis.com/css?family=Dosis");
+
+$font: "Dosis";
+$mainColor: #066cc1;
+$secondaryColor: #1e3918;
+
+$textPrimaryColor: black;
+$textSecondaryColor: #ffffff;
+
+h1{
+font-family: $font;
+}
+h2 {font-family: $font;}
+h3 {font-family: $font;}
+p{font-family: $font;}
+
+button {
+    background-color: $mainColor;
+    color: $textSecondaryColor;
+    padding: 3%;
+    border-radius: 8px;
+    border-style: none;
+    margin: 10px;
+    width: 30%;
+    height: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

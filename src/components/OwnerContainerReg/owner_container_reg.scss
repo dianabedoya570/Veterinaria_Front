@@ -1,0 +1,39 @@
+@import "../../styles/variables.scss";
+
+.card_owner {
+  align-self: center;
+  margin: 5%;
+  width: 80%;
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: row-reverse;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  &__Fotograph {
+    display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      width: 50%;
+      height: 100%;
+
+    &__img {
+      display: inline-block;
+      overflow: hidden;
+      width: 50%;
+      margin: 25px;
+      border: 2px solid $mainColor;
+      border-radius: 50%;
+    }
+  }
+  &__info {
+    display: flex;
+      flex-direction: column;
+      justify-content: center;
+    &__h1 {
+      color: $mainColor;
+    }
+    width: 80%;
+    height: 100%;
+  }
+}

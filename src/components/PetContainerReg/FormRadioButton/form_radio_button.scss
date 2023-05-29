@@ -1,0 +1,19 @@
+@import "../../../styles/variables.scss";
+
+.radio-button-group {
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  margin: 20px;
+  justify-content: flex-start;
+
+  &__span {
+    color: $textPrimaryColor;
+    width: 30%;
+  }
+  &__opcion {
+    display: flex;
+    width: 70%;
+    justify-content: flex-start;
+  }
+}

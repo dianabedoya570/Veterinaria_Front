@@ -1,0 +1,16 @@
+.button_button {
+  width: 120px;
+  height: 40px;
+  border-radius: 10px;
+  box-shadow: 3px 4px 3px rgb(177, 175, 175);
+  color: rgb(226, 221, 221);
+  font-weight: 700;
+  background-color: #3f8bee;
+
+  
+}
+
+.button_button:hover {
+  background-color: #096beb;
+  transform: scale(1.1);
+}

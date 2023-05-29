@@ -1,0 +1,85 @@
+.login_h1 {
+  font-size: 18px;
+  margin-top: 15px;
+}
+.login {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: #649bf7;
+  background-image: url("../../images/Salud2.jpg");
+  background-size: cover;
+}
+.login_container {
+  height: 80%;
+  width: 85%;
+  border: solid 5px rgba(238, 241, 251, 0.42);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  box-shadow: 15px 15px 15px rgba(164, 164, 164, 0.635);
+}
+.back_image {
+  height: 100%;
+  background-color: #2271f8a5;
+  width: 60%;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+
+.login_img {
+  height: 100%;
+}
+.container {
+  width: 40%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  background-color: rgba(240, 255, 255, 0.653);
+  border-bottom-right-radius: 20px;
+  border-top-right-radius: 20px;
+  flex-direction: column;
+  padding-bottom: 10%;
+}
+.container_input {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.form {
+  width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.login_h1 {
+  font-size: 30px;
+}
+.button {
+  margin-top: 30px;
+  height: 40px;
+}
+.toggle_button {
+  width: 100px;
+  height: 40px;
+}
+.container_toggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.inputs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
