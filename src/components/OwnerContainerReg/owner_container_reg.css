@@ -1,0 +1,67 @@
+@import url("https://fonts.googleapis.com/css?family=Dosis");
+h1 {
+  font-family: "Dosis";
+}
+
+h2 {
+  font-family: "Dosis";
+}
+
+h3 {
+  font-family: "Dosis";
+}
+
+p {
+  font-family: "Dosis";
+}
+
+button {
+  background-color: #066cc1;
+  color: #ffffff;
+  padding: 3%;
+  border-radius: 8px;
+  border-style: none;
+  margin: 10px;
+  width: 30%;
+  height: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card_owner {
+  align-self: center;
+  margin: 5%;
+  width: 80%;
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: row-reverse;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.card_owner__Fotograph {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 50%;
+  height: 100%;
+}
+.card_owner__Fotograph__img {
+  display: inline-block;
+  overflow: hidden;
+  width: 50%;
+  margin: 25px;
+  border: 2px solid #066cc1;
+  border-radius: 50%;
+}
+.card_owner__info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 80%;
+  height: 100%;
+}
+.card_owner__info__h1 {
+  color: #066cc1;
+}/*# sourceMappingURL=owner_container_reg.css.map */

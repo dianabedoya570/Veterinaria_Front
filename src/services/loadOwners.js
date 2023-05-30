@@ -164,8 +164,7 @@ export const updatePetId = async (
   pet_image,
   pet_race,
   pet_specie,
-  pet_weight,
-  pet_status
+  pet_weight
 ) => {
   const token = sessionStorage.getItem("token");
   const id = +idpet;
@@ -181,7 +180,52 @@ export const updatePetId = async (
         pet_race: pet_race,
         pet_specie: pet_specie,
         pet_weight: pet_weight,
-        pet_status: pet_status,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+//delete (change status)
+
+export const updatePersonStatus = async (idperson) => {
+  const token = sessionStorage.getItem("token");
+  const id = +idperson;
+  console.log("en update");
+  try {
+    await axios.put(
+      `https://vetapp-backend-production.up.railway.app/person/${id}`,
+      {
+        status: false,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+//delete (change) status pet
+
+export const updatePetStatus = async (idpet) => {
+  const token = sessionStorage.getItem("token");
+  const id = +idpet;
+  console.log("en update");
+  try {
+    await axios.put(
+      `https://vetapp-backend-production.up.railway.app/pet/${id}`,
+      {
+        pet_status: 0,
       },
       {
         headers: {

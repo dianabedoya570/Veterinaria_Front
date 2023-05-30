@@ -1,0 +1,18 @@
+.input {
+  display: flex;
+  width: 340px;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.input__label {
+  margin-right: 10px;
+  font-weight: 500;
+  color: black;
+}
+
+.input__input {
+  width: 100%;
+  background-color: rgba(82, 176, 183, 0.3333333333);
+}/*# sourceMappingURL=inputText.css.map */

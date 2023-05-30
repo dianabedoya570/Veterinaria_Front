@@ -1,0 +1,97 @@
+.table_container {
+  min-height: 400px;
+  min-width: 500px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+td {
+  padding: 10px;
+  border-top: solid 1px rgba(128, 128, 128, 0.373);
+  border-bottom: solid 1px rgba(128, 128, 128, 0.373);
+  color: rgb(58, 57, 57);
+  text-align: center;
+}
+
+.photo_user {
+  width: 50px;
+  height: 60px;
+}
+
+tr:hover {
+  background-color: rgba(128, 128, 128, 0.421);
+}
+
+th {
+  padding: 10px;
+  color: rgb(68, 68, 68);
+}
+
+.button {
+  width: 40px;
+  height: 40px;
+  background-color: rgba(5, 5, 209, 0.678);
+}
+.button :hover {
+  width: 40px;
+  height: 40px;
+  background-color: rgba(7, 7, 221, 0.845);
+  border-radius: 5px;
+}
+
+.button_delete {
+  width: 40px;
+  height: 40px;
+  background-color: rgba(5, 5, 209, 0.678);
+}
+.button_delete :hover {
+  width: 40px;
+  height: 40px;
+  background-color: rgba(255, 0, 0, 0.809);
+  border-radius: 5px;
+}
+
+.button_pet {
+  width: 40px;
+  height: 40px;
+  background-color: rgba(5, 5, 209, 0.678);
+}
+.button_pet :hover {
+  width: 40px;
+  height: 40px;
+  background-color: rgba(7, 7, 221, 0.845);
+  border-radius: 5px;
+}
+
+.page_button {
+  width: 35px;
+  height: 35px;
+  padding: 5px;
+}
+.page_button:hover {
+  background-color: rgba(5, 5, 189, 0.845);
+  zoom: 1.1;
+}
+
+.symbol_button {
+  width: 20px;
+  height: 20px;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: center;
+}
+
+.image_user {
+  max-width: 200px;
+  max-height: 200px;
+  border-radius: 10px;
+  border: solid 2px rgba(255, 255, 255, 0.762);
+  box-shadow: 5px 5px 5px rgba(128, 128, 128, 0.442);
+}/*# sourceMappingURL=information.module.css.map */

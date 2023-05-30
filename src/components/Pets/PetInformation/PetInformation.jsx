@@ -27,6 +27,7 @@ const PetInformation = () => {
       sessionStorage.setItem("idhistory", pet.history[0].idhistory);
       if (sessionStorage.getItem("idhistory")) {
         const idhistory = sessionStorage.getItem("idhistory");
+        console.log("idhistory");
         dispatch(getProceduresByHistory({ token, idhistory }));
       }
     }

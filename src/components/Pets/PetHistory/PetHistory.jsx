@@ -21,17 +21,16 @@ const PetHistory = () => {
   useEffect(() => {
     token = sessionStorage.getItem("token");
     idhistory = sessionStorage.getItem("idhistory");
+    console.log("history**", idhistory);
   }, [dispatch, token, idhistory]);
 
-  useEffect(() => {}, [procedure, loading, idhistory]);
-
-  if (loading) {
-    return <p>Cargando procedimientos...</p>;
-  }
+  useEffect(() => {
+    console.log("procedure", procedure.length);
+  }, [procedure, loading, idhistory]);
 
   return (
     <div className={styles.history}>
-      {procedure.length >= 1 &&
+      {procedure.length >= 1 ? (
         procedure.map((item) => (
           <div className={styles.history__events_div} key={item.idprocedure}>
             <div className={styles.history_info}>
@@ -81,7 +80,10 @@ const PetHistory = () => {
               </div>
             </div>
           </div>
-        ))}
+        ))
+      ) : (
+        <p>No hay procedimientos para esta mascota</p>
+      )}
     </div>
   );
 };
