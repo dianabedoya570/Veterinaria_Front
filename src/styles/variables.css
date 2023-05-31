@@ -1,0 +1,30 @@
+@import url("https://fonts.googleapis.com/css?family=Dosis");
+h1 {
+  font-family: "Dosis";
+}
+
+h2 {
+  font-family: "Dosis";
+}
+
+h3 {
+  font-family: "Dosis";
+}
+
+p {
+  font-family: "Dosis";
+}
+
+button {
+  background-color: #066cc1;
+  color: #ffffff;
+  padding: 3%;
+  border-radius: 8px;
+  border-style: none;
+  margin: 10px;
+  width: 30%;
+  height: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}/*# sourceMappingURL=variables.css.map */

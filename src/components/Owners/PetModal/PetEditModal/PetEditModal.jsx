@@ -59,7 +59,6 @@ const PetEditModal = () => {
       setRace(petInformation.pet_race || "");
       setSpecie(petInformation.pet_specie || "");
       setWeight(petInformation.pet_weight || "");
-      setStatus(petInformation.pet_status || "");
       setPhoto(petInformation.pet_image || "");
     }
   }, [petInformation]);
@@ -159,15 +158,6 @@ const PetEditModal = () => {
               InputLabelProps={{ shrink: true }}
               className={styles.text}
               onChange={(event) => setWeight(event.target.value)}
-            />
-            <TextField
-              id="status"
-              label="Estado"
-              variant="standard"
-              value={status}
-              InputLabelProps={{ shrink: true }}
-              className={styles.text}
-              onChange={(event) => setStatus(event.target.value)}
             />
           </div>
         </div>

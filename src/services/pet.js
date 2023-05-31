@@ -34,7 +34,7 @@ export const createPet = async (
   try {
     const token = sessionStorage.getItem("token");
 
-    await axios.post(
+    const response = await axios.post(
       `https://vetapp-backend-production.up.railway.app/pet`,
       {
         pet_name: pet_name,
@@ -53,6 +53,7 @@ export const createPet = async (
         },
       }
     );
+    return response;
   } catch (error) {
     console.log(error);
   }

@@ -12,10 +12,15 @@ import SkipPreviousIcon from "@mui/icons-material/SkipPrevious";
 import { setIdOwner } from "../../../store/slices/ownersControl";
 import { setListNames } from "../../../store/slices/ownersControl";
 import { setModalPerson } from "../../../store/slices/ownersControl";
+import { updatePersonStatus } from "../../../services/loadOwners";
+import { Loader } from "../../Loader";
 
 const Information = () => {
+  const [isLoading, setIsLoading] = useState(true);
   const dispatch = useDispatch();
+
   useEffect(() => {
+    setIsLoading(true);
     dispatch(loadOwners(1));
   }, [dispatch]);
   const { list } = useSelector((state) => state.owner);
@@ -30,9 +35,12 @@ const Information = () => {
   const totalPages = list.totalPages || "";
   const nextPage = +page + 1;
   const previousPage = +page - 1;
+
   useEffect(() => {
     setInformation(data);
+    setIsLoading(false);
   }, [data]);
+
   useEffect(() => {
     if (listSearch.length >= 1) {
       setInformation(listSearch);
@@ -49,8 +57,14 @@ const Information = () => {
       dispatch(loadOwners(1));
     }
   }, [listNames]);
+
   return (
     <div className={styles.container}>
+      {isLoading && (
+        <div className={styles.loader_overlay}>
+          <Loader />
+        </div>
+      )}
       <div className={styles.table_container}>
         <table className={styles.table}>
           <tr className={styles.column}>
@@ -112,7 +126,13 @@ const Information = () => {
                     </button>
                   </td>
                   <td>
-                    <button className={styles.button_delete}>
+                    <button
+                      className={styles.button_delete}
+                      onClick={() => {
+                        updatePersonStatus(idperson);
+                        dispatch(setListNames([1]));
+                      }}
+                    >
                       <DeleteForeverIcon />
                     </button>
                   </td>
