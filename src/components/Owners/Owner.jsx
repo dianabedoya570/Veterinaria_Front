@@ -11,6 +11,7 @@ import { useDispatch } from "react-redux";
 import { setListNames } from "../../store/slices/ownersControl";
 import { UserModal } from "./UserModal";
 import { PetEditModal } from "./PetModal/PetEditModal";
+import { useNavigate } from "react-router-dom";
 
 const Owner = () => {
   const dispatch = useDispatch();
@@ -18,6 +19,8 @@ const Owner = () => {
   const { modalPerson } = useSelector((state) => state.owner);
   const [inputValue, setInputValue] = useState("");
   const { editPet } = useSelector((state) => state.owner);
+
+  const navigate = useNavigate();
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
@@ -30,6 +33,10 @@ const Owner = () => {
     dispatch(setListNames([1]));
   };
 
+  const handleClickHome = () => {
+    navigate("/loby");
+  };
+
   return (
     <div className={styles.container}>
       {modal && <PetModal />}
@@ -38,7 +45,12 @@ const Owner = () => {
 
       <div className={styles.header}>
         <div className={styles.header_information}>
-          <img src={logo} alt="logo" className={styles.pet_header} />
+          <img
+            src={logo}
+            alt="logo"
+            className={styles.pet_header}
+            onClick={handleClickHome}
+          />
           <h2 className={styles.title}>Nombre de aplicación</h2>
           <div className={styles.container_search}>
             <input

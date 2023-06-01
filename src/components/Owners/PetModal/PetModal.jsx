@@ -11,6 +11,7 @@ import { loadPets } from "../../../services/loadOwners";
 import { useNavigate } from "react-router-dom";
 import { setEditPet } from "../../../store/slices/ownersControl";
 import { setIdPet } from "../../../store/slices/ownersControl";
+import { updatePetStatus } from "../../../services/loadOwners";
 
 const PetModal = () => {
   const { idOwner } = useSelector((state) => state.owner);
@@ -71,13 +72,22 @@ const PetModal = () => {
                       <td>
                         <button
                           className={styles.button_pet}
-                          onClick={() => dispatch(setOwnerModalState(true))}
+                          onClick={() => {
+                            //console.log(`/pets/${idpet}`);
+                            navigate(`/pets/${idpet}`);
+                          }}
                         >
                           <PetsIcon />
                         </button>
                       </td>
                       <td>
-                        <button className={styles.button_delete}>
+                        <button
+                          className={styles.button_delete}
+                          onClick={() => {
+                            updatePetStatus(idpet);
+                            dispatch(setOwnerModalState(false));
+                          }}
+                        >
                           <DeleteForeverIcon />
                         </button>
                       </td>
@@ -85,13 +95,15 @@ const PetModal = () => {
                   );
                 })}
               </table>
-              <Button
-                variant="contained"
-                className={styles.button_create}
-                onClick={handleClickNew}
-              >
-                Nueva mascota
-              </Button>
+              <div className={styles.button_new_container}>
+                <Button
+                  variant="contained"
+                  className={styles.button_create}
+                  onClick={handleClickNew}
+                >
+                  Nueva mascota
+                </Button>
+              </div>
             </div>
           </div>
         </div>

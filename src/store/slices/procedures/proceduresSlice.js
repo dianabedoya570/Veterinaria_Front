@@ -12,9 +12,7 @@ const initialState = {
 export const getProceduresByHistory = createAsyncThunk(
   "pet/getPetProcedures",
   async ({ token, idhistory }) => {
-    console.log(idhistory);
     const data = await getProceduresApi(token, idhistory);
-
     return data;
   }
 );
@@ -23,7 +21,6 @@ export const createProcedure = createAsyncThunk(
   "pet/createProcedure",
   async (body) => {
     const data = await createProcedureAPI(body);
-
     return data;
   }
 );
@@ -40,6 +37,7 @@ export const procedureSlice = createSlice({
       .addCase(getProceduresByHistory.fulfilled, (state, action) => {
         state.loading = false;
         state.procedure = action.payload;
+        console.log("from slice", state.procedure);
       });
   },
 });

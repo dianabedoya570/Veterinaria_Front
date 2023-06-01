@@ -1,0 +1,14 @@
+.consultation__button {
+  margin: 2px;
+}
+
+.consultation {
+  border: solid 1px black;
+  border-radius: 15px;
+  width: 400px;
+  height: 120%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}/*# sourceMappingURL=new-consultation.css.map */

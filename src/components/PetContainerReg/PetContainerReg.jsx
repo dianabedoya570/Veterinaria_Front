@@ -4,6 +4,10 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { useDispatch, useSelector } from "react-redux";
+import {
+  createHistory,
+  selectHistoryState,
+} from "../../store/slices/history/historySilce";
 import { setPhotoPet } from "../../store/slices/register";
 import styles from "./pet_container_reg.module.scss";
 import { FotoPet } from "./foto";
@@ -16,6 +20,7 @@ const PetContainerReg = () => {
   const fileInputRef = useRef(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const history = useSelector(selectHistoryState) || {};
 
   const handleImageChange = async (event) => {
     const file = event.target.files[0];
@@ -53,10 +58,34 @@ const PetContainerReg = () => {
   const handleButtonClick = () => {
     fileInputRef.current.click();
   };
+
+  const petIsCreated = () => {};
   //console.log(idUser);
 
-  const handleClickSave = () => {
-    createPet(name, color, age, race, specie, weight, image, status, idUser);
+  const handleClickSave = async () => {
+    const res = await createPet(
+      name,
+      color,
+      age,
+      race,
+      specie,
+      weight,
+      image,
+      status,
+      idUser
+    );
+    console.log("datos creados", res.status);
+
+    if (res.status === 201) {
+      console.log("mascota creada satisfactoriamente", res.data.idpet);
+      dispatch(
+        createHistory({
+          idpet: res.data.idpet,
+          token: sessionStorage.getItem("token"),
+        })
+      );
+      console.log("res***", res);
+    }
     navigate("/owners");
   };
 

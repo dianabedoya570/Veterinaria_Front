@@ -10,6 +10,9 @@ import TagIcon from "@mui/icons-material/Tag";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import MedicalInformationIcon from "@mui/icons-material/MedicalInformation";
 import ScheduleIcon from "@mui/icons-material/Schedule";
+import { Alert } from "@mui/material";
+import { Box } from "@mui/system";
+import { Loader } from "../../Loader";
 
 const PetHistory = () => {
   let token = "";
@@ -21,17 +24,27 @@ const PetHistory = () => {
   useEffect(() => {
     token = sessionStorage.getItem("token");
     idhistory = sessionStorage.getItem("idhistory");
-  }, [dispatch, token, idhistory]);
+  }, []);
 
-  useEffect(() => {}, [procedure, loading, idhistory]);
-
-  if (loading) {
-    return <p>Cargando procedimientos...</p>;
-  }
+  useEffect(() => {
+    const getHistory = () => {
+      dispatch(getProceduresByHistory({ token, idhistory }));
+    };
+    if (idhistory) {
+      console.log("hola");
+      console.log(procedure);
+      getHistory();
+    }
+  }, [procedure, idhistory]);
 
   return (
     <div className={styles.history}>
-      {procedure.length >= 1 &&
+      {loading && (
+        <div className={styles.loader_overlay}>
+          <Loader />
+        </div>
+      )}
+      {procedure && procedure.length >= 1 ? (
         procedure.map((item) => (
           <div className={styles.history__events_div} key={item.idprocedure}>
             <div className={styles.history_info}>
@@ -81,7 +94,18 @@ const PetHistory = () => {
               </div>
             </div>
           </div>
-        ))}
+        ))
+      ) : (
+        <Box
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          height="100%"
+          width="100%"
+        >
+          <Alert severity="info">No hay procedimientos para esta mascota</Alert>
+        </Box>
+      )}
     </div>
   );
 };

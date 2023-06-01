@@ -1,13 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Login, selectUserData } from "../../store/slices/login/loginSlice";
+import {
+  Login,
+  selectUserData,
+  selectLoginState,
+} from "../../store/slices/login/loginSlice";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
+import { Loader } from "../Loader";
 import { useNavigate } from "react-router-dom";
 import styles from "./login.module.scss";
+import stylesLoader from "../Loader/loader.scss";
 import Dog from "../../images/dog_login.png";
 
 const LoginUser = () => {
@@ -15,10 +21,13 @@ const LoginUser = () => {
     email: "",
     password: "",
   });
+
   const dispatch = useDispatch();
 
-  const { payload } = useSelector(selectUserData) || {};
-  const { idperson, name, last_name, status, email, token } = payload || "";
+  const payload = useSelector(selectUserData) || {};
+  const { loading } = useSelector(selectLoginState) || false;
+  const { idperson, name, last_name, status, email, token, image, idrol } =
+    payload || "";
 
   const navigate = useNavigate();
   const [typeUser, setTypeUser] = React.useState("usuario");
@@ -27,6 +36,7 @@ const LoginUser = () => {
   };
 
   useEffect(() => {
+    console.log(loading);
     if (token) {
       sessionStorage.setItem("idperson", idperson);
       sessionStorage.setItem("name", name);
@@ -34,11 +44,13 @@ const LoginUser = () => {
       sessionStorage.setItem("status", status);
       sessionStorage.setItem("email", email);
       sessionStorage.setItem("token", token);
+      sessionStorage.setItem("image", image);
+      sessionStorage.setItem("idrol", idrol);
       goToFavs();
       console.log("logged");
       console.log(payload);
     }
-  }, [token]);
+  }, [token, loading]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -60,10 +72,16 @@ const LoginUser = () => {
 
   return (
     <div className={styles.login}>
+      {loading && (
+        <div className={styles.loader_overlay}>
+          <Loader />
+        </div>
+      )}
       <div className={styles.login_container}>
         <div className={styles.back_image}>
           <img src={Dog} alt="logo" className={styles.login_img} />
         </div>
+
         <div className={styles.container}>
           <div className={styles.user_type}></div>
           <h1 className={styles.login_h1}>Login</h1>

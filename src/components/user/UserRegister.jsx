@@ -4,6 +4,7 @@ import {
   CreatePerson,
   selectPersonState,
 } from "../../store/slices/person/personSlice";
+import axios from "axios";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
@@ -16,6 +17,7 @@ import styles from "./user.module.scss";
 import userRegister from "../../images/user-register.png";
 import { FotoUser } from "./foto";
 import { setPhotoUser } from "../../store/slices/register";
+import { Photo } from "@mui/icons-material";
 
 const UserRegister = () => {
   const [typeUser, setTypeUser] = React.useState("usuario");
@@ -36,15 +38,33 @@ const UserRegister = () => {
   const dispatch = useDispatch();
 
   const response = useSelector(selectPersonState) || {};
-
+  const [photo, setPhoto] = useState("");
   const handleUser = (event, newTypeUser) => {
     setTypeUser(newTypeUser);
   };
   const fileInputRef = useRef(null);
-  const handleImageChange = (event) => {
+
+  const handleImageChange = async (event) => {
     const file = event.target.files[0];
     const url = URL.createObjectURL(file);
     dispatch(setPhotoUser(url));
+
+    //cloudinary
+
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("upload_preset", "s35o2c05");
+
+    try {
+      const response = await axios.post(
+        "https://api.cloudinary.com/v1_1/dx1i7gswx/image/upload",
+        formData
+      );
+      setPhoto(response.data.secure_url);
+      console.log("url image", response.data.secure_url);
+    } catch (error) {
+      console.error(error);
+    }
   };
   const handleButtonClick = () => {
     fileInputRef.current.click();
@@ -70,7 +90,7 @@ const UserRegister = () => {
           email: userData.email,
           phone: userData.phone,
           password: userData.password,
-          image: "www.image.com",
+          image: photo,
           status: true,
           idrol: 1,
           token: sessionStorage.getItem("token"),

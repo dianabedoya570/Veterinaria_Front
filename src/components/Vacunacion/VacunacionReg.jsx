@@ -3,7 +3,11 @@ import { FormInput } from "../PetContainerReg/FormInput";
 import { FormSelect } from "../PetContainerReg/FormSelect";
 import { FormButton } from "../PetContainerReg/FormButton";
 import { useDispatch, useSelector } from "react-redux";
-import { createProcedure } from "../../store/slices/procedures/proceduresSlice";
+import {
+  createProcedure,
+  getProceduresByHistory,
+  selectProcedureState,
+} from "../../store/slices/procedures/proceduresSlice";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
@@ -15,27 +19,57 @@ const VacunacionReg = ({ handleClose }) => {
     procedure_title: "",
     procedure_detail: "",
     attached: "",
-    idperson: null,
+    idperson: sessionStorage.getItem("idperson"),
     idprocedure_type: 1,
     idhistory: null,
   });
 
-  const token = "";
   const dispatch = useDispatch();
-  //const { response } = useSelector(selectUserData) || {};
+  const { response } = useSelector(selectProcedureState) || {};
+
+  useEffect(() => {
+    dispatch(
+      getProceduresByHistory({
+        token: sessionStorage.getItem("token"),
+        idhistory: +sessionStorage.getItem("idhistory"),
+      })
+    );
+  }, []);
 
   function handleSave() {
+    dispatch(
+      getProceduresByHistory({
+        token: sessionStorage.getItem("token"),
+        idhistory: +sessionStorage.getItem("idhistory"),
+      })
+    );
     dispatch(
       createProcedure({
         procedure_title: consultation.procedure_title,
         procedure_detail: consultation.procedure_detail,
         attached: consultation.attached,
-        idperson: consultation.idperson,
-        idprocedure_type: consultation.idprocedure_type,
-        idhistory: consultation.idhistory,
+        idperson: +consultation.idperson,
+        idprocedure_type: +consultation.idprocedure_type,
+        idhistory: +sessionStorage.getItem("idhistory"),
         token: sessionStorage.getItem("token"),
       })
     );
+    dispatch(
+      getProceduresByHistory({
+        token: sessionStorage.getItem("token"),
+        idhistory: +sessionStorage.getItem("idhistory"),
+      })
+    );
+
+    handleClose();
+    setConsultation({
+      procedure_title: "",
+      procedure_detail: "",
+      attached: "",
+      idperson: null,
+      idprocedure_type: 1,
+      idhistory: null,
+    });
   }
 
   const handleInputChange = (e) => {
@@ -47,10 +81,8 @@ const VacunacionReg = ({ handleClose }) => {
   };
 
   useEffect(() => {
-    consultation.idhistory = sessionStorage.getItem("idhistory");
-    consultation.idperson = sessionStorage.getItem("idperson");
-    console.log(consultation);
-  }, []);
+    response;
+  }, [dispatch]);
 
   return (
     <div className="card_vacuna">

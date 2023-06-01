@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Menu } from "../menu";
 import { Footer } from "../footer";
 import logo from "../../images/dog_login.png";
 import styles from "./loby.module.scss";
+import { loadPersonId } from "../../services/loadOwners";
+import { useSelector } from "react-redux";
 
 const Loby = () => {
+  const image = sessionStorage.getItem("image");
+
   return (
     <div className={styles.loby}>
       <div className={styles.loby_container}>
@@ -25,7 +29,7 @@ const Loby = () => {
               </h3>
             </div>
             <div className={styles.loby_head__image}>
-              <img src="#" alt="name" />
+              <img src={image} alt="name" className={styles.img_user} />
             </div>
           </div>
         </div>

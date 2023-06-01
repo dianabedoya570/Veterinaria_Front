@@ -18,14 +18,17 @@ export const getProceduresApi = async (token, idhistory) => {
 
 export const createProcedureAPI = async (body) => {
   try {
-    const req = await fetch("http://localhost:4000/procedure", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${body.token}`,
-      },
-      body: JSON.stringify(body),
-    });
+    const req = await fetch(
+      "https://vetapp-backend-production.up.railway.app/procedure",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${body.token}`,
+        },
+        body: JSON.stringify(body),
+      }
+    );
 
     const data = await req.json();
     console.log("data", data);
